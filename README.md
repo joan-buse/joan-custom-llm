@@ -64,9 +64,17 @@ evidence, one per experiment.
 
 Links: [config.json (starter)](llm_runs/20260923T043726_468085Z/config.json) ·
 [config.json (expanded)](llm_runs/20260923T043810_126309Z/config.json) ·
+[training_summary.json (starter)](llm_runs/20260923T043726_468085Z/training_summary.json) ·
+[training_summary.json (expanded)](llm_runs/20260923T043810_126309Z/training_summary.json) ·
 [vocabulary_report.json (starter)](llm_runs/20260923T043726_468085Z/vocabulary_report.json) ·
 [vocabulary_report.json (expanded)](llm_runs/20260923T043810_126309Z/vocabulary_report.json) ·
-[corpus_manifest.json (expanded)](llm_runs/20260923T043810_126309Z/corpus_manifest.json).
+[corpus_manifest.json (expanded)](llm_runs/20260923T043810_126309Z/corpus_manifest.json) ·
+[tokenization.json (starter)](llm_runs/20260923T043726_468085Z/tokenization.json) ·
+[inspection.json (starter)](llm_runs/20260923T043726_468085Z/inspection.json).
+
+Corpus files here are plain UTF-8 `.txt` (no PDFs), so there was no PDF text
+extraction to check — `corpus_manifest.json` (linked above) confirms both files
+imported with zero warnings and their full text previews.
 
 The vocabulary is capped at 509 types; both runs stayed well under that cap (133 and
 366 types), so **no word was dropped for being too rare** — every distinct word seen
@@ -187,6 +195,15 @@ less coherent word choices — visible in the T=1.2 sample above.
 Suite: [evals/language_evals.json](evals/language_evals.json) (unchanged, 48 cases) ·
 Runner: [run_evals.py](run_evals.py) · Guide: [evals/README.md](evals/README.md).
 
+**Scoring rule:** the runner feeds the model only the prompt (never the four choices
+or the answer key) and reads its logits for the four choice words. A case scores 1
+if the model assigns the *highest* probability to the correct answer among the four
+choices, 0 otherwise (a tie scores 0). Separately, and not counted in that score, the
+runner also lets the model freely generate up to 24 tokens from the same prompt —
+that free continuation is saved for inspection but never used for scoring. A case is
+marked `out_of_vocabulary` (unscorable) if any prompt or choice word isn't in the
+model's vocabulary, or `context_too_long` if the prompt exceeds the 48-token window.
+
 | Experiment | Stage | Correct / 48 | Scorable / 48 | Accuracy among scorable | Full results |
 |---|---|---|---|---|---|
 | Starter corpus | Untrained | 9 | 24 | 37.5% | [untrained](llm_runs/20260923T043726_468085Z/language_evals/untrained) |
@@ -237,11 +254,59 @@ Before adding any corpus material, all 6 opposites/negation cases were **unscora
 the two files, **all 6 became scorable in both the untrained and trained expanded
 model** (100% coverage) — pure vocabulary effect, since coverage is identical before
 and after training (only weights change during training, not the word list).
-Accuracy on those 6 cases, however, stayed flat across training: opposites 1/3 →
-1/3, negation 0/3 → 0/3. **This means the added material fixed the vocabulary gap
-but the model did not learn the compositional pattern** (pick the antonym; propagate
-the corrected value across a 3-clause context) within this training budget. See
-"One limitation" for why and what I'd try next.
+Accuracy on those 6 cases, however, stayed flat across training at the aggregate
+level: opposites 1/3 → 1/3, negation 0/3 → 0/3. The per-case detail is more telling
+than the aggregate — it isn't that training changed nothing:
+
+| ID | Prompt | Expected | Untrained predicted | Final predicted |
+|---|---|---|---|---|
+| lang_28 | the opposite of hot is | cold | **cold** ✓ | heavy ✗ |
+| lang_29 | the opposite of empty is | full | soft ✗ | **full** ✓ |
+| lang_30 | the opposite of noisy is | quiet | loud ✗ | loud ✗ |
+| lang_31 | the box is not red . it is blue . the box is | blue | green ✗ | yellow ✗ |
+| lang_32 | ava did not buy tea . she bought milk . ava bought | milk | bread ✗ | bread ✗ |
+| lang_33 | the door is not open . it is closed . the door is | closed | missing ✗ | open ✗ |
+
+Training flipped lang_28 from correct to wrong and lang_29 from wrong to correct —
+net count unchanged, but the *specific* case that's "correct" is different, and none
+of the 6 choice-probability margins were large (see the raw
+[eval_results.json](llm_runs/20260923T043810_126309Z/language_evals/final/eval_results.json)
+files — probabilities across the 4 choices were all within a few percentage points
+of each other in every case). This looks like near-chance guessing rather than a
+learned antonym/negation rule, both before and after training.
+
+**Actual free continuations** (separate from the multiple-choice score — the model
+generates these unconstrained, and they were never used for scoring), same 6 cases,
+final expanded model:
+
+| ID | Prompt | Free continuation (final) |
+|---|---|---|
+| lang_28 | the opposite of hot is | `near .` |
+| lang_29 | the opposite of empty is | `hard .` |
+| lang_30 | the opposite of noisy is | `student .` |
+| lang_31 | the box is not red . it is blue . the box is | `cart the jacket .` |
+| lang_32 | ava did not buy tea . she bought milk . ava bought | `the kind suitcase .` |
+| lang_33 | the door is not open . it is closed . the door is | `old .` |
+
+None of these free continuations produce the correct answer word either — further
+evidence that the model has the vocabulary but not the reasoning pattern. For
+comparison, the same 6 prompts against the **untrained** model produced long,
+incoherent multi-word ramblings (e.g. lang_28 untrained: `student market she banana
+floor striped plants grew sandwich trip was day looked we sun train recommended
+sara sack bank blue truck wear detail`) — full data in
+[eval_results.json (untrained)](llm_runs/20260923T043810_126309Z/language_evals/untrained/eval_results.json)
+vs
+[eval_results.json (final)](llm_runs/20260923T043810_126309Z/language_evals/final/eval_results.json).
+Training did shorten and "grammaticalize" the free continuations (from 24-token
+rambles to short 1–4 word phrases ending in a period, matching the classroom corpus's
+sentence style) even though it didn't fix their content — consistent with the loss
+drop and sample evidence elsewhere in this README, and with training reinforcing
+*sentence shape* far more than the specific antonym/negation relationship.
+
+**This means the added material fixed the vocabulary gap but the model did not
+learn the compositional pattern** (pick the antonym; propagate the corrected value
+across a 3-clause context) within this training budget. See "One limitation" for why
+and what I'd try next.
 
 **Categories I did not extend** (grammar, reference, sequence, spatial_relations,
 everyday_knowledge, categories_and_analogies) remain fully unscorable — their eval
@@ -379,8 +444,13 @@ classroom-domain sentences in the same 3,000-step budget, so gradient updates fo
 the new pattern are rare relative to updates reinforcing the old domain templates.
 The eval results confirm this precisely: coverage went from 0/6 to 6/6 scorable
 (a pure vocabulary effect, since coverage doesn't change during training — only
-weights do), while accuracy on those same 6 cases stayed exactly flat through
-training (opposites 1/3 → 1/3, negation 0/3 → 0/3).
+weights do), while aggregate accuracy on those same 6 cases stayed at the same
+near-chance level through training (opposites 1/3 → 1/3, negation 0/3 → 0/3) — and
+the per-case detail in the "My fixed language evals" section shows this wasn't the
+same case staying right/wrong throughout, but different cases flipping in each
+direction, plus free continuations that never produce the correct word either before
+or after training. Both signs point the same way: the model learned sentence shape,
+not the antonym/negation relationship.
 
 **Next experiment:** increase the *relative frequency* of the extension pattern
 during training — either by using `CORPUS = "folder"` with a much larger set of

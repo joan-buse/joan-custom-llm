@@ -1,0 +1,81 @@
+the opposite of big is small .
+the opposite of small is big .
+the opposite of fast is slow .
+the opposite of slow is fast .
+the opposite of day is night .
+the opposite of night is day .
+the opposite of light is heavy .
+the opposite of heavy is light .
+the opposite of near is far .
+the opposite of far is near .
+the opposite of young is old .
+the opposite of old is young .
+the opposite of easy is hard .
+the opposite of hard is easy .
+the opposite of wet is dry .
+the opposite of dry is wet .
+the opposite of high is low .
+the opposite of low is high .
+the opposite of strong is weak .
+the opposite of weak is strong .
+the opposite of happy is sad .
+the opposite of sad is happy .
+the opposite of clean is dirty .
+the opposite of dirty is clean .
+the opposite of open is shut .
+the opposite of shut is open .
+the opposite of loud is silent .
+the opposite of silent is loud .
+the opposite of thick is thin .
+the opposite of thin is thick .
+big and small are opposites .
+small and big are opposites .
+fast and slow are opposites .
+slow and fast are opposites .
+day and night are opposites .
+night and day are opposites .
+light and heavy are opposites .
+heavy and light are opposites .
+near and far are opposites .
+far and near are opposites .
+young and old are opposites .
+old and young are opposites .
+easy and hard are opposites .
+hard and easy are opposites .
+wet and dry are opposites .
+dry and wet are opposites .
+high and low are opposites .
+low and high are opposites .
+strong and weak are opposites .
+weak and strong are opposites .
+happy and sad are opposites .
+sad and happy are opposites .
+clean and dirty are opposites .
+dirty and clean are opposites .
+open and shut are opposites .
+shut and open are opposites .
+loud and silent are opposites .
+silent and loud are opposites .
+thick and thin are opposites .
+thin and thick are opposites .
+hot and cold are opposites .
+cold and hot are opposites .
+empty and full are opposites .
+full and empty are opposites .
+noisy and quiet are opposites .
+quiet and noisy are opposites .
+wide and narrow are opposites .
+narrow and wide are opposites .
+warm and cool are opposites .
+cool and warm are opposites .
+the soup was still warm when it arrived .
+she arrived early for the class .
+he arrived late for the meeting .
+the blanket felt soft against the skin .
+the plate on the table was round .
+the train left early this morning .
+the leaves turned green in spring .
+the sun looked yellow at sunset .
+the seat cushion was thick and soft .
+the wheel of the cart was round and old .
+the bus was late because of the traffic .

@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "file": "negation.txt",
+      "bytes": 3121,
+      "sha256": "8c4437fe2117ad36eae8f5231189843d79dee1f94814c35d7a170b6fd9475125",
+      "warnings": [],
+      "characters": 3121,
+      "passages": 52,
+      "unique_passages": 52,
+      "preview": "leo did not buy the shirt ; leo bought the jacket ; leo bought the jacket .\nmia did not eat the cake ; mia ate the soup ; mia ate the soup .\nnoah did not wear the boots ; noah wore the sandals ; noah wore the sandals .\nzara did not choose the red car ; zara chose the blue car ; zara chose the blue c"
+    },
+    {
+      "file": "opposites.txt",
+      "bytes": 2572,
+      "sha256": "024c640bc439b5f0986e0afc3aedeb62571f47fd9f7a00abecded7019e2e5931",
+      "warnings": [],
+      "characters": 2572,
+      "passages": 81,
+      "unique_passages": 81,
+      "preview": "the opposite of big is small .\nthe opposite of small is big .\nthe opposite of fast is slow .\nthe opposite of slow is fast .\nthe opposite of day is night .\nthe opposite of night is day .\nthe opposite of light is heavy .\nthe opposite of heavy is light .\nthe opposite of near is far .\nthe opposite of fa"
+    }
+  ],
+  "ignored": [],
+  "external_passages": 133,
+  "mode": "classroom",
+  "base_passages": 6200,
+  "unique_passages": 4725,
+  "new_unique_passages": 133,
+  "duplicates_removed": 1608,
+  "max_passage_tokens": 47,
+  "split_unit": "deduplicated passage, not source file"
+}

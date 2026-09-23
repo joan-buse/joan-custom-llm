@@ -1,0 +1,42 @@
+{
+  "model": "llm_runs/20260923T043810_126309Z/model.pt",
+  "model_sha256": "8e34b9d68704a4df9a554befae2970fce7b18a39f43c3c1c85d797e9809ad022",
+  "completed_steps": 3000,
+  "fresh_context_per_prompt": true,
+  "temperature": 0.8,
+  "max_tokens": 24,
+  "turns": [
+    {
+      "prompt": "the customer",
+      "seed": 2026,
+      "response": "selected the product after checking the price .",
+      "unknown_prompt_words": [],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "the opposite of big is",
+      "seed": 2027,
+      "response": "school .",
+      "unknown_prompt_words": [],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "ava did not buy the shirt",
+      "seed": 2028,
+      "response": "; yellow at the milk ; question about the up .",
+      "unknown_prompt_words": [],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "hello how are you today",
+      "seed": 2029,
+      "response": "the hospital has has a discussion of treatment has a discussion of design helped us understand the bank focused on harvest and the new",
+      "unknown_prompt_words": [
+        "hello",
+        "how",
+        "you"
+      ],
+      "prompt_truncated": false
+    }
+  ]
+}

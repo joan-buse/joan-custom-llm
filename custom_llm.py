@@ -42,11 +42,31 @@
 CORPUS = "classroom"       # Teaching sentences + files; "folder" uses only files
 CORPUS_FOLDER = "corpus"   # Add .pdf, .txt and .md files here, including subfolders
 TRAINING_STEPS = 3000      # 10 for setup; 3000 for the main experiment
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.0005     # Lowered from the 0.001 default for a more stable descent
 # %% [markdown]
 # ### My prediction
-# Replace this text with your choices, reasons, and expected changes in generated
-# text, validation loss, and neighbors of a word you choose to inspect.
+# **Choices:** `CORPUS="classroom"`, `TRAINING_STEPS=3000`, `LEARNING_RATE=0.0005`
+# (half the notebook's 0.001 default).
+#
+# **Reasoning:** 3,000 steps is the notebook's suggested starting budget for the
+# main experiment (10 steps only checks that the pipeline runs). I lowered the
+# learning rate to 0.0005 because this is a very small model (2 blocks, 4 heads,
+# 64-dim embeddings) trained on a narrow, repetitive synthetic corpus: a smaller
+# step size should descend more smoothly and reduce the risk of the loss
+# oscillating or overshooting a good minimum early in training, at the cost of
+# needing more steps to converge as far. With warmup + cosine decay already
+# built into the schedule, halving the base rate mainly stretches out how
+# aggressive the very first updates are.
+#
+# **Expected changes after training:** validation loss should drop noticeably
+# from its untrained (near-random) starting point and roughly track the
+# training loss on this small, repetitive corpus. Generated samples should
+# shift from random token noise (untrained) toward short, mostly grammatical
+# sentences that reuse the corpus's fixed sentence templates and vocabulary,
+# without generalizing beyond them. For an inspected word (e.g. "surgeon"), I
+# expect its 64-dim embedding to move so that its nearest neighbors after
+# training are other words that appear in similar sentence contexts in the
+# corpus (e.g. "patient", "hospital", "care").
 #
 # ## 2. Load the tools and network
 # Colab generally includes PyTorch. Locally, install requirements.txt first.

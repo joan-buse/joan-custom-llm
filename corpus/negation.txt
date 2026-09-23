@@ -1,0 +1,52 @@
+leo did not buy the shirt ; leo bought the jacket ; leo bought the jacket .
+mia did not eat the cake ; mia ate the soup ; mia ate the soup .
+noah did not wear the boots ; noah wore the sandals ; noah wore the sandals .
+zara did not choose the red car ; zara chose the blue car ; zara chose the blue car .
+omar did not order the coffee ; omar ordered the juice ; omar ordered the juice .
+ella did not pack the backpack ; ella packed the suitcase ; ella packed the suitcase .
+finn did not ride the bike ; finn rode the skateboard ; finn rode the skateboard .
+sara did not read the comic ; sara read the magazine ; sara read the magazine .
+luca did not watch the movie ; luca watched the show ; luca watched the show .
+nora did not cook the sandwich ; nora cooked the salad ; nora cooked the salad .
+emma did not plant the rose ; emma planted the tulip ; emma planted the tulip .
+liam did not paint the fence ; liam painted the shed ; liam painted the shed .
+ivy did not carry the ladder ; ivy carried the toolbox ; ivy carried the toolbox .
+theo did not borrow the pencil ; theo borrowed the marker ; theo borrowed the marker .
+mila did not bring the umbrella ; mila brought the raincoat ; mila brought the raincoat .
+the chair is not green ; the chair is yellow ; the chair is yellow .
+the wall is not white ; the wall is gray ; the wall is gray .
+the curtain is not brown ; the curtain is purple ; the curtain is purple .
+the gate is not open ; the gate is shut ; the gate is shut .
+the blanket is not striped ; the blanket is plain ; the blanket is plain .
+the jacket is not torn ; the jacket is new ; the jacket is new .
+the table is not wobbly ; the table is steady ; the table is steady .
+the floor is not wet ; the floor is dry ; the floor is dry .
+the window is not broken ; the window is fixed ; the window is fixed .
+the bottle is not full ; the bottle is empty ; the bottle is empty .
+the path is not rocky ; the path is smooth ; the path is smooth .
+the sky is not clear ; the sky is cloudy ; the sky is cloudy .
+leo placed the small box on the table ; it was heavy .
+ava organized her books before the trip .
+she thanked her friend for the kind gift .
+the bakery sold fresh bread and pastries every morning .
+the chef warmed the milk before serving it .
+the farmer harvested rice after the rain .
+the garden grew mint for making tea .
+noah found the missing glove under the couch .
+the wide bridge crossed the river near town .
+mila closed the window before the storm .
+the old door creaked when it opened .
+mia carried the box up the stairs .
+the baby drank warm milk before bed .
+the missing puzzle piece turned up later .
+the missing report was found in the drawer .
+grandma always keeps a warm pot of tea ready .
+the painter mixed red and yellow paint .
+the sky turned blue after the storm passed .
+ava watered the plants every evening .
+the shoppers plan to buy gifts for the holiday .
+the family bought a new sofa last week .
+the farmer stored rice in a large sack .
+the bakery baked fresh bread every sunday .
+the front door was painted a deep shade of blue .
+the shop closed early because of a storm .

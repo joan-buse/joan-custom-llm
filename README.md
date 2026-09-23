@@ -294,6 +294,10 @@ python3 chat.py --model llm_runs/20260923T043810_126309Z/model.pt --transcript m
 `8e34b9d68704a4df9a554befae2970fce7b18a39f43c3c1c85d797e9809ad022`, 3,000 completed
 steps.
 
+**Screenshot** (terminal session, 4 prompts and replies):
+
+![Terminal screenshot of the chat interface, showing 4 prompts and replies from the trained model](llm_runs/20260923T043810_126309Z/chat_screenshot.png)
+
 **Transcript (4 real interactions):**
 [chat_transcript_screenshot.json](llm_runs/20260923T043810_126309Z/chat_transcript_screenshot.json)
 
